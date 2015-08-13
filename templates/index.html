@@ -103,8 +103,7 @@ function removeStation(id) {
 
 function updateUrl() {
     var btn = $('#sb-button');
-    var urlBase = "http://bikes.scurt.me/table?stations="
-    var newUrl = "panicboard://?url=" + encodeURIcomponent(urlBase) + selectedStations.join("-") + "&panel=table";
+    var newUrl = "panicboard://?url=" + encodeURI("http://bikes.scurt.me/table?stations=") + selectedStations.join("-") + "&panel=table";
     
     btn.attr('href', newUrl);
 
