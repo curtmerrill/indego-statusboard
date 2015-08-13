@@ -93,14 +93,23 @@ function selectStation(id, name) {
     var newListItem = $('<li class="' + id + '">' + name + '</li>');
     $(newListItem).click(function() { var c = $(this).attr('class'); removeStation(c); });
     stationList.append(newListItem);
+    updateUrl();
 }
 
 function removeStation(id) {
     removed = selectedStations.splice($.inArray(id, selectedStations), 1);
     $("li."+id).remove(); 
+    updateUrl();
 }
 
+function updateUrl() {
+    var btn = $('#sb-button');
+    var urlBase = "panicboard://?url=[%-encoded table data url]&panel=table&sourceDisplayName=[your %-encoded company name]";
+    var newUrl = "table?stations=";
+    
+    btn.attr('href', newUrl + selectedStations.join("-"));
 
+}
 
 </script>
 
