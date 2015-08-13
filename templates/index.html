@@ -7,7 +7,6 @@
 
     <meta property="og:description"
           content="Add the status of Indego bike share stations to your Status Board">
-    <meta property="og:image" content="">
     
     <link rel="stylesheet" href="static/main.css">
 </head>
@@ -104,10 +103,10 @@ function removeStation(id) {
 
 function updateUrl() {
     var btn = $('#sb-button');
-    var urlBase = "panicboard://?url=[%-encoded table data url]&panel=table&sourceDisplayName=[your %-encoded company name]";
-    var newUrl = "table?stations=";
+    var urlBase = "http://bikes.scurt.me/table?stations="
+    var newUrl = "panicboard://?url=" + encodeURIcomponent(urlBase) + selectedStations.join("-") + "&panel=table";
     
-    btn.attr('href', newUrl + selectedStations.join("-"));
+    btn.attr('href', newUrl);
 
 }
 
