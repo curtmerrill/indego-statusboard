@@ -1,3 +1,10 @@
+/* colors
+   red: 962D3E
+   dark: 343642
+   gray: 979c9c
+   beige: f2ebc7
+   blue: 348899
+*/
 /* Prevent font scaling when iOS orientation changes
 */
 html {
@@ -15,7 +22,9 @@ html {
 }
 
 body {
-    font-size: 100%;
+    background-color: #343642;
+    color: #f2ebc7;
+    font-size: 120%;
     font-family: "Helvetica", Arial, sans-serif;
     line-height: 1.4em;
     margin: 0;
@@ -26,6 +35,15 @@ header {
     text-align: center;
 }
 
+h1 {
+    font-size: 4rem;
+    font-weight: 200;
+    font-style: italic;
+}
+
+section {
+    padding-top: 1rem;
+}
 section>h2,
 section>p {
     text-align: center;
@@ -41,8 +59,10 @@ section>p {
 }
 
 .station-list-container {
+    color: #343642;
+    background-color: #f2ebc7;
     border-radius: 10px;
-    box-shadow: 3px 3px 5px #333;
+    box-shadow: 3px 3px 5px #343642;
     position: absolute;
     top: 1em;
     right: 1em;
@@ -72,30 +92,35 @@ section>p {
     font-size: 90%;
     padding: .5em;
     border-bottom: 1px solid #ccc;
+    line-height: 1.2em;
 }
 .station-list>li:hover {
-    background-color: #fee;
     cursor: pointer;
 }
 
+p.small {
+    font-size: .9em;
+    font-style: italic;
+}
 
 footer {
     text-align: center;
     font-size: 85%;
 }
 
-.button {
-    font-size: 2em;
+a,
+a:visited {
+    color: #979c9c;
+}
+
+a.button {
+    font-size: 1.5em;
     text-shadow: 1px 1px 3px #000;
     text-decoration: none;
+    text-transform: uppercase;
     display: inline-block;
     padding: 1em;
     border-radius: 20px;
-    color: #fff;
-    background-color: #84e;
-}
-
-.button:hover {
-    background-color: #ff3;
-    color: #000;
+    color: #f2ebc7;
+    background-color: #348899;
 }
