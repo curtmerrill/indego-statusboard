@@ -25,6 +25,12 @@ body {
 header {
     text-align: center;
 }
+
+section>h2,
+section>p {
+    text-align: center;
+}
+
 .map-container {
     position: relative;
 }
@@ -35,17 +41,61 @@ header {
 }
 
 .station-list-container {
+    border-radius: 10px;
+    box-shadow: 3px 3px 5px #333;
     position: absolute;
     top: 1em;
     right: 1em;
     width: 300px;
-    padding: .5em;
+    padding: 0 1em;
     background: #ffffff;
 }
+
+.station-list-container>h3 {
+    margin: 1rem 0 0 0;
+}
+.station-list-container>p {
+    margin: 0;
+    font-size: 90%;
+    color: #888;
+    font-style: italic;
+}
+
+.station-list {
+    border-top: 1px solid #ccc;
+    margin-left: 0;
+    padding-left: 0;
+    list-style-type: none;
+}
+
+.station-list>li {
+    font-size: 90%;
+    padding: .5em;
+    border-bottom: 1px solid #ccc;
+}
+.station-list>li:hover {
+    background-color: #fee;
+    cursor: pointer;
+}
+
 
 footer {
     text-align: center;
     font-size: 85%;
 }
 
+.button {
+    font-size: 2em;
+    text-shadow: 1px 1px 3px #000;
+    text-decoration: none;
+    display: inline-block;
+    padding: 1em;
+    border-radius: 20px;
+    color: #fff;
+    background-color: #84e;
+}
 
+.button:hover {
+    background-color: #ff3;
+    color: #000;
+}
