@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Indego + Status Board</title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta property="og:description"
+          content="Add the status of Indego bike share stations to your Status Board">
+    <meta property="og:image" content="">
+    
+    <link rel="stylesheet" href="static/main.css">
+</head>
+
+<body>
+    <header>
+        <h1>Indego + Status Board</h1>
+        <p class="subhed">Track <a href="http://rideindego.com">Indego</a> stations in your
+        <a href="http://www.panic.com/statusboard">Status Board</a></p>
+    </header>
+
+    <section>
+        <h2>Step 1: Select your stations on the map below:</h2>
+
+        <div class="map-container">
+            <div id="station-map" class="map"></div>
+            <div class="station-list-container">
+                <h3>Selected stations</h3>
+                <p>Click to remove</p>
+                <ul class="station-list">
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <section>
+        <h2>Step 2: Add the stations to your Status Board</h2>
+        <p>Click button if you're on your iPad</p>
+        <p>Or copy this URL and add it as a table</p>
+    </section>
+
+    <footer>
+        <p>Created by <a href="http://curtmerrill.com">Curt Merrill</a></p>
+    </footer>
+</body>
+
+<script src="static/jquery.js"></script>
+<script src="static/leaflet.js"></script>
+<link rel="stylesheet" href="static/leaflet.css"></script>
+
+<script>
+var map = L.map('station-map', {
+    center: [39.9524047,-75.1656166],
+    zoom: 13 });
+
+L.tileLayer('http://{s}.tiles.mapbox.com/v3/curtmerrill.n5l168he/{z}/{x}/{y}.png').addTo(map);
+
+var stations;
+var selectedStations = [];
+var stationList = $('ul.station-list');
+
+$.get("http://api.phila.gov/bike-share-stations/v1", function(data) {
+    stations = JSON.parse(data).features;
+    $.each(stations, function(i, station) {
+        addStationToMap(station);
+    });
+});
+
+function addStationToMap(stationObj) {
+    var stationMarker = L.circleMarker([stationObj.geometry.coordinates[1], stationObj.geometry.coordinates[0]], 4, {
+        color: 'blue',
+        fillColor: 'blue',
+        fillOpacity: 1
+    })
+    stationMarker.kioskId = stationObj.properties.kioskId.toString();
+    stationMarker.kioskName = stationObj.properties.name;
+    stationMarker.on('click', clickMarker);
+    stationMarker.addTo(map);
+}
+
+function clickMarker(e) {
+    var kioskId = this.kioskId,
+        kioskName = this.kioskName;
+
+    if ($.inArray(kioskId, selectedStations) < 0) {
+        selectStation(kioskId, kioskName);
+    } else {
+        removeStation(kioskId);
+    }
+}
+
+function selectStation(id, name) {
+    selectedStations.push(id);
+    var newListItem = $('<li class="' + id + '">' + name + '</li>');
+    $(newListItem).click(function() { var c = $(this).attr('class'); removeStation(c); });
+    stationList.append(newListItem);
+}
+
+function removeStation(id) {
+    removed = selectedStations.splice($.inArray(id, selectedStations), 1);
+    $("li."+id).remove(); 
+}
+
+
+
+</script>
+
+
+
+</html>
