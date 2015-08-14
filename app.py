@@ -1,9 +1,6 @@
-import csv
 import requests
-import io
 
 from flask import Flask
-from flask import make_response
 from flask import render_template
 from flask import request
 
