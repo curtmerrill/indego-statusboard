@@ -1,0 +1,22 @@
+<style>
+    td.bikes {
+	text-align: right;
+    }
+    .name {
+	width: 60%;
+    }
+</style>
+<table>
+<tr>
+    <th class='name'>Station</th>
+    <th class='bikes'>Bikes</th>
+    <th class='docks'>Docks</th>
+</tr>
+{% for k in kiosks %}
+<tr>
+    <td class='name'>{{ k.Station }}</td>
+    <td class='bikes'>{{ k.Bikes }}</td>
+    <td class='docks'>{{ k.Docks }}</td>
+</tr>
+{% endfor %}
+</table>

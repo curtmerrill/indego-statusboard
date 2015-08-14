@@ -21,7 +21,6 @@ def hello():
 def table():
     station_ids = str(request.args.get('stations')).split('-')
     kiosk_data = []
-    kiosk_headers = ["Station","Bikes","Docks"]
      
     r = requests.get('http://api.phila.gov/bike-share-stations/v1', headers=HEADERS)
     if r.status_code == 200:
@@ -34,16 +33,7 @@ def table():
     else:
         kiosk_data.append({"Station": "Error fetching data"})
 
-    si = io.StringIO()
-    cw = csv.DictWriter(si, fieldnames=kiosk_headers)
-    cw.writeheader()
-    for row in kiosk_data:
-        cw.writerow(row)
-   
-    output = make_response(si.getvalue())
-    output.headers["Content-type"] = "text/csv"
-    
-    return output
+    return render_template("table.html", kiosks=kiosk_data)
 
 if __name__ == "__main__":
     # app.debug = True
