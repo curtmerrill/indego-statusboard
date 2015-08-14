@@ -1,6 +1,6 @@
 # Indego + Status Board
 
-This is a simple app to add Indego stations to your Status Board.
+This is a [Flask](http://flask.pocoo.org) app to add [Indego](http://rideindego.com) stations to your [Status Board](http://panic.com/statusboard).
 
 
 ## Screenshot
