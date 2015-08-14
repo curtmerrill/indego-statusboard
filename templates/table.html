@@ -1,10 +1,25 @@
 <style>
-    td.bikes {
+    td.bikes,
+    td.docks {
+        line-height: 35px;
+    }
+
+    .bikes {
 	text-align: right;
+    }
+    .docks {
+        text-align: left;
     }
     .name {
 	width: 60%;
+        text-align: left;
     }
+    td img {
+	margin-top: -12px;
+        margin-left: 1px;	
+        margin-right: 1px;
+    }
+	
 </style>
 <table>
 <tr>
@@ -15,8 +30,12 @@
 {% for k in kiosks %}
 <tr>
     <td class='name'>{{ k.Station }}</td>
-    <td class='bikes'>{{ k.Bikes }}</td>
-    <td class='docks'>{{ k.Docks }}</td>
+    <td class='bikes'>
+        {% for i in range( k.Bikes ) %}<img width="5" height="35" src="http://bikes.scurt.me/static/bike.png">{% endfor %}
+    </td>
+    <td class='docks'>
+        {% for i in range( k.Docks ) %}<img width="5" height="35" src="http://bikes.scurt.me/static/dock.png">{% endfor %}
+    </td>
 </tr>
 {% endfor %}
 </table>
