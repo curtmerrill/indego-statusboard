@@ -1,34 +1,9 @@
-/* colors
-   red: 962D3E
-   dark: 343642
-   gray: 979c9c
-   beige: f2ebc7
-   blue: 348899
-*/
-/* Prevent font scaling when iOS orientation changes
-*/
 html {
     -webkit-text-size-adjust: 100%;
 }
 
-/* Sane box model for all elements
-*/
-*,
-*:before,
-*:after {
-    -moz-box-sizing: border-box;
-    -webkit-box-sizing: border-box;
-    box-sizing: border-box;
-}
-
 body {
-    background-color: #343642;
-    color: #f2ebc7;
-    font-size: 120%;
-    font-family: "Helvetica", Arial, sans-serif;
-    line-height: 1.4em;
-    margin: 0;
-    padding: 0;
+    padding-top: 2rem;
 }
 
 header {
@@ -36,19 +11,18 @@ header {
 }
 
 h1 {
-    font-size: 4rem;
-    font-weight: 200;
     font-style: italic;
 }
 
+img {
+    max-width: 100%;
+}
 section {
     padding-top: 1rem;
 }
-section>h2,
-section>p {
+.center {
     text-align: center;
 }
-
 .map-container {
     position: relative;
 }
@@ -59,8 +33,6 @@ section>p {
 }
 
 .station-list-container {
-    color: #343642;
-    background-color: #f2ebc7;
     border-radius: 10px;
     box-shadow: 3px 3px 5px #343642;
     position: absolute;
@@ -71,31 +43,39 @@ section>p {
     background: #ffffff;
 }
 
-.station-list-container>h3 {
-    margin: 1rem 0 0 0;
+.station-list-header {
+    margin-top: 1rem;
+    margin-bottom: 0;
+    padding: 0;
 }
-.station-list-container>p {
+.help {
     margin: 0;
+    padding: 0;
     font-size: 90%;
     color: #888;
     font-style: italic;
 }
 
 .station-list {
-    border-top: 1px solid #ccc;
+    margin-top: 1rem;
     margin-left: 0;
     padding-left: 0;
     list-style-type: none;
 }
 
 .station-list>li {
-    font-size: 90%;
-    padding: .5em;
+    font-size: 1.5rem;
+    padding: 0;
+    margin: 0;
     border-bottom: 1px solid #ccc;
-    line-height: 1.2em;
+    line-height: 3rem;
+}
+.station-list>li:first-child {
+    border-top: 1px solid #ccc;
 }
 .station-list>li:hover {
     cursor: pointer;
+    background-color: #ffefef;
 }
 
 p.small {
@@ -105,22 +85,12 @@ p.small {
 
 footer {
     text-align: center;
-    font-size: 85%;
+    font-size: 1.5rem;
 }
-
-a,
-a:visited {
-    color: #979c9c;
+.button-row {
+    margin-top: 3rem;
 }
-
-a.button {
-    font-size: 1.5em;
-    text-shadow: 1px 1px 3px #000;
-    text-decoration: none;
-    text-transform: uppercase;
-    display: inline-block;
-    padding: 1em;
-    border-radius: 20px;
-    color: #f2ebc7;
-    background-color: #348899;
+.button-lg {
+    font-size: 2rem;
+    line-height: 3.5rem;
 }

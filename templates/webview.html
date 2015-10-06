@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Indego + Status Board</title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta property="og:description"
+          content="Keep an eye on your favorite Indego stations.">
+    
+    <link rel="stylesheet" href="static/normalize.css">
+    <link rel="stylesheet" href="static/skeleton.css">
+    <link rel="stylesheet" href="static/main.css">
+    <style>
+        table { width: 100%; }
+        .bikes {
+            text-align: right;
+        }
+        .docks {
+            text-align: left;
+        }
+        .name {
+            width: 60%;
+            text-align: left;
+        }
+        td img {
+            vertical-align: middle;
+            margin-left: 1px;	
+            margin-right: 1px;
+        }
+        
+    </style>
+
+<script>
+  !function(g,s,q,r,d){r=g[r]=g[r]||function(){(r.q=r.q||[]).push(
+  arguments)};d=s.createElement(q);q=s.getElementsByTagName(q)[0];
+  d.src='//d1l6p2sc9645hc.cloudfront.net/tracker.js';q.parentNode.
+  insertBefore(d,q)}(window,document,'script','_gs');
+
+  _gs('GSN-556621-J');
+</script>
+
+</head>
+
+<body>
+    <header class="container">
+        <h1>Station Status</h1>
+    </header>
+
+    <section class="container">
+        <table>
+        <tr>
+            <th class='name'>Station</th>
+            <th class='bikes'>Bikes</th>
+            <th class='docks'>Docks</th>
+        </tr>
+        {% for k in kiosks %}
+        <tr>
+            <td class='name'>{{ k.Station }}</td>
+            <td class='bikes'>
+                {% for i in range( k.Bikes ) %}<img width="5" height="35" src="http://bikes.scurt.me/static/bike.png">{% endfor %}
+            </td>
+            <td class='docks'>
+                {% for i in range( k.Docks ) %}<img width="5" height="35" src="http://bikes.scurt.me/static/dock.png">{% endfor %}
+            </td>
+        </tr>
+        {% endfor %}
+        </table>
+
+    </section>
+
+    <footer class="container">
+        <p>Created by <a href="http://twitter.com/cmerrill">Curt Merrill</a><br>
+        Code is on <a href="https://github.com/curtmerrill/indego-statusboard">Github</a></p>
+    </footer>
+</body>
+
+
+</html>

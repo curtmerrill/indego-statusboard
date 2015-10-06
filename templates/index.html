@@ -6,8 +6,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <meta property="og:description"
-          content="Add the status of Indego bike share stations to your Status Board">
+          content="Keep an eye on your favorite Indego stations.">
     
+    <link rel="stylesheet" href="static/normalize.css">
+    <link rel="stylesheet" href="static/skeleton.css">
     <link rel="stylesheet" href="static/main.css">
 
 <script>
@@ -22,36 +24,42 @@
 </head>
 
 <body>
-    <header>
+    <header class="container">
         <h1>Indego + Status Board</h1>
         <p class="subhed">Track <a href="http://rideindego.com">Indego</a> stations in your
         <a href="http://www.panic.com/statusboard">Status Board</a></p>
     </header>
 
-    <section>
-        <h2>Select your stations on the map below</h2>
+    <section class="container">
+        <h3>Select your stations on the map below</h3>
 
         <div class="map-container">
             <div id="station-map" class="map"></div>
             <div class="station-list-container">
-                <h3>Selected stations</h3>
-                <p>Click/tap name to remove</p>
+                <h4 class="station-list-header">Selected stations</h4>
+                <p class="help">Click/tap name to remove</p>
                 <ul class="station-list">
                 </ul>
             </div>
         </div>
     </section>
 
-    <section>
-        <p><a id="sb-button" class="button" href="">Add to Status Board</a></p>
-        <p class="small">Make sure you're on an iPad with Status Board installed.</p>
+    <section class="container button-row">
+        <div class="row">
+            <div class="one-half column center">
+                <a id="sb-button" class="button button-primary button-lg" href="">Add to Status Board</a>
+                <p><i>Make sure you're on an iPad with Status Board installed.</i></p>
+                <p>Status Board screenshot:<br><img alt="Status Board screenshot" src="static/screenshot.gif"></p>
+            </div>
+            <div class="one-half column center">
+                <a id="web-button" class="button button-lg" href="">View in browser</a>
+            </div>
+        </div>
     </section>
 
-    <section>
-	<p>Sample screenshot:</p>
-	<p><img alt="screenshot" src="static/screenshot.gif"></p>
-    <footer>
-        <p>Created by <a href="http://twitter.com/cmerrill">Curt Merrill</a> | Code is on <a href="https://github.com/curtmerrill/indego-statusboard">Github</a></p>
+    <footer class="container">
+        <p>Created by <a href="http://twitter.com/cmerrill">Curt Merrill</a><br>
+        Code is on <a href="https://github.com/curtmerrill/indego-statusboard">Github</a></p>
     </footer>
 </body>
 
@@ -115,10 +123,13 @@ function removeStation(id) {
 }
 
 function updateUrl() {
-    var btn = $('#sb-button');
-    var newUrl = "panicboard://?url=" + "http%3A%2F%2Fbikes.scurt.me%2Ftable%3Fstations%3D" + selectedStations.join("-") + "&panel=table";
-    
-    btn.attr('href', newUrl);
+    var sbBtn = $('#sb-button');
+    var sbUrl = "panicboard://?url=" + "http%3A%2F%2Fbikes.scurt.me%2Ftable%3Fstations%3D" + selectedStations.join("-") + "&panel=table";
+    var webBtn = $('#web-button');
+    var webUrl = "/html?stations=" + selectedStations.join("-")
+
+    sbBtn.attr('href', sbUrl);
+    webBtn.attr('href', webUrl);
 
 }
 

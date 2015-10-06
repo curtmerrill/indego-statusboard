@@ -32,6 +32,25 @@ def table():
 
     return render_template("table.html", kiosks=kiosk_data)
 
+@app.route("/html", methods=['GET',])
+def web():
+    station_ids = str(request.args.get('stations')).split('-')
+    kiosk_data = []
+     
+    r = requests.get('http://api.phila.gov/bike-share-stations/v1', headers=HEADERS)
+    if r.status_code == 200:
+        data = r.json()['features']
+        for kiosk in data:
+            if str(kiosk['properties']['kioskId']) in station_ids:
+                kiosk_data.append({"Station": kiosk['properties']['name'],
+                    "Bikes": kiosk['properties']['bikesAvailable'],
+                    "Docks": kiosk['properties']['docksAvailable'] })
+    else:
+        kiosk_data.append({"Station": "Error fetching data"})
+
+    return render_template("webview.html", kiosks=kiosk_data)
+
+
 if __name__ == "__main__":
     # app.debug = True
     app.run(host="0.0.0.0")
