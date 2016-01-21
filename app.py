@@ -19,7 +19,7 @@ def table():
     station_ids = str(request.args.get('stations')).split('-')
     kiosk_data = []
      
-    r = requests.get('http://api.phila.gov/bike-share-stations/v1', headers=HEADERS)
+    r = requests.get('https://www.rideindego.com/stations/json/', headers=HEADERS)
     if r.status_code == 200:
         data = r.json()['features']
         for kiosk in data:
@@ -37,7 +37,7 @@ def web():
     station_ids = str(request.args.get('stations')).split('-')
     kiosk_data = []
      
-    r = requests.get('http://api.phila.gov/bike-share-stations/v1', headers=HEADERS)
+    r = requests.get('https://www.rideindego.com/stations/json/', headers=HEADERS)
     if r.status_code == 200:
         data = r.json()['features']
         for kiosk in data:

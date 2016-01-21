@@ -78,8 +78,8 @@ var stations;
 var selectedStations = [];
 var stationList = $('ul.station-list');
 
-$.get("http://api.phila.gov/bike-share-stations/v1", function(data) {
-    stations = JSON.parse(data).features;
+$.get("https://www.rideindego.com/stations/json/", function(data) {
+    stations = data['features'];
     $.each(stations, function(i, station) {
         addStationToMap(station);
     });
